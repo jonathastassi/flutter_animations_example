@@ -1,9 +1,10 @@
 import 'package:corinthians_flutter_animations/pages/loading_page.dart';
+import 'package:corinthians_flutter_animations/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 
 void main() {
-  timeDilation = 5;
+  timeDilation = 4;
   runApp(MyApp());
 }
 
@@ -16,9 +17,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         textSelectionTheme: TextSelectionThemeData(cursorColor: Colors.white),
-        primaryColor: Colors.white,
+        primaryColor: Colors.white,        
       ),
-      home: LoadingPage(),
+      home: LoginPage(),
     );
   }
 }

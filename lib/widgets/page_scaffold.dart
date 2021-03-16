@@ -22,12 +22,12 @@ class PageScaffold extends StatelessWidget {
         MediaQuery.of(context).padding.top -
         MediaQuery.of(context).padding.bottom;
 
-    return Scaffold(
-      key: key,
-      endDrawer: endDrawer,
-      backgroundColor: Colors.black,
-      body: SafeArea(
-        child: Stack(
+    return SafeArea(
+      child: Scaffold(
+        key: key,
+        endDrawer: endDrawer,
+        backgroundColor: Colors.black,
+        body: Stack(
           children: [
             Align(
               alignment: Alignment.topCenter,

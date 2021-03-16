@@ -1,3 +1,4 @@
+import 'package:corinthians_flutter_animations/widgets/loading_custom.dart';
 import 'package:flutter/material.dart';
 
 class ButtonAnimatedSubmit extends StatelessWidget {
@@ -35,7 +36,7 @@ class ButtonAnimatedSubmit extends StatelessWidget {
           ),
           onPressed: () => !isLoading ? this.onClick?.call() : null,          
           child: isLoading
-              ? CircularProgressIndicator()
+              ? LoadingCustom()
               : Text(
                   this.label,
                   style: TextStyle(

@@ -1,7 +1,6 @@
-import 'dart:async';
-
 import 'package:corinthians_flutter_animations/pages/login_page.dart';
 import 'package:corinthians_flutter_animations/widgets/animated_opacity_custom.dart';
+import 'package:corinthians_flutter_animations/widgets/loading_custom.dart';
 import 'package:corinthians_flutter_animations/widgets/page_scaffold.dart';
 import 'package:flutter/material.dart';
 
@@ -85,9 +84,7 @@ class _LoadingPageState extends State<LoadingPage>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                    ),
+                    LoadingCustom(),
                   ],
                 ),
                 SizedBox(

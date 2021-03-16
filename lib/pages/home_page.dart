@@ -20,21 +20,27 @@ class HomePage extends StatelessWidget {
       header: Padding(
         padding: EdgeInsets.all(10),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Image.asset("assets/images/escudo-Corinthians.png",
-                width: height * .07),
+            Hero(
+              tag: "logo-corinthians",
+              child: Image.asset("assets/images/escudo-Corinthians.png",
+                  width: height * .07),
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text("OLÁ"),
+                Text(
+                  "OLÁ",
+                  style: TextStyle(fontSize: height * .015),
+                ),
                 Text(
                   "JONATHAS",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 24,
+                      fontSize: height * .032,
                       letterSpacing: 2),
                 ),
               ],
@@ -42,7 +48,7 @@ class HomePage extends StatelessWidget {
             IconButton(
                 icon: Icon(
                   Icons.menu_rounded,
-                  size: 40,
+                  size: height * .05,
                 ),
                 onPressed: () {
                   var state = this._scaffoldKey.currentState;

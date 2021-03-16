@@ -52,10 +52,13 @@ class _LoadingPageState extends State<LoadingPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
-                  height: size.height * .4,
-                  width: size.height * .4,
-                  child: Image.asset("assets/images/escudo-Corinthians.png"),
+                Hero(
+                  tag: "logo-corinthians",
+                  child: Container(
+                    height: size.height * .4,
+                    width: size.height * .4,
+                    child: Image.asset("assets/images/escudo-Corinthians.png"),
+                  ),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,

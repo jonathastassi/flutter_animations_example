@@ -24,8 +24,11 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset("assets/images/escudo-Corinthians.png",
-                width: height * .15),
+            Hero(
+              tag: "logo-corinthians",
+              child: Image.asset("assets/images/escudo-Corinthians.png",
+                  width: height * .15),
+            ),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

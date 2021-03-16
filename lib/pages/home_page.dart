@@ -3,10 +3,10 @@ import 'package:corinthians_flutter_animations/widgets/page_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   static get route => MaterialPageRoute(
-        builder: (context) => HomePage(),
+        builder: (context) => HomePage(),        
       );
 
   @override
@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
     double height = size.height;
 
     return PageScaffold(
-      key: _scaffoldKey,
+      scaffoldKey: _scaffoldKey,
       endDrawer: DrawerMenu(),
       header: Padding(
         padding: EdgeInsets.all(10),
@@ -57,7 +57,14 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      body: Center(child: Text("Menu Inicial")),
+      body: Center(
+        child: Text(
+          "Menu Inicial",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
       percenteBody: 0.9,
     );
   }

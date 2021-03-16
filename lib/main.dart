@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         textSelectionTheme: TextSelectionThemeData(cursorColor: Colors.white),
         primaryColor: Colors.white,        
       ),
-      home: LoginPage(),
+      home: LoadingPage(),
     );
   }
 }

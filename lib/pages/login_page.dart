@@ -1,4 +1,5 @@
 import 'package:corinthians_flutter_animations/pages/home_page.dart';
+import 'package:corinthians_flutter_animations/utils/http_status_enum.dart';
 import 'package:corinthians_flutter_animations/utils/validator.dart';
 import 'package:corinthians_flutter_animations/widgets/animated_opacity_custom.dart';
 import 'package:corinthians_flutter_animations/widgets/button_animated_submit.dart';
@@ -18,7 +19,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage>
     with SingleTickerProviderStateMixin {
   double opacity = 0;
-  bool isLoading = false;
+  HttpStatus statusLoading = HttpStatus.none;
 
   late AnimationController _animationController;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -47,10 +48,14 @@ class _LoginPageState extends State<LoginPage>
     var state = _formKey.currentState;
     if (state?.validate() == true) {
       setState(() {
-        isLoading = true;
+        statusLoading = HttpStatus.running;
       });
 
       await Future.delayed(Duration(seconds: 2));
+
+      setState(() {
+        statusLoading = HttpStatus.finalized;
+      });
 
       Navigator.of(context).pushReplacement(HomePage.route);
     }
@@ -143,7 +148,7 @@ class _LoginPageState extends State<LoginPage>
                     ),
                     ButtonAnimatedSubmit(
                       label: "Entrar",
-                      isLoading: isLoading,
+                      statusLoading: statusLoading,
                       animationController: _animationController,
                       onClick: _pressEnter,
                     ),

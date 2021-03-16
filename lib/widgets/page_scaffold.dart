@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PageScaffold extends StatelessWidget {
-  final Key? key;
+  final Key? scaffoldKey;
   final Widget header;
   final Widget body;
   final Widget? endDrawer;
@@ -11,7 +11,7 @@ class PageScaffold extends StatelessWidget {
       {required this.header,
       required this.body,
       this.percenteBody = 0.85,
-      this.key,
+      this.scaffoldKey,
       this.endDrawer});
 
   @override
@@ -24,7 +24,7 @@ class PageScaffold extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        key: key,
+        key: scaffoldKey,
         endDrawer: endDrawer,
         backgroundColor: Colors.black,
         body: Stack(

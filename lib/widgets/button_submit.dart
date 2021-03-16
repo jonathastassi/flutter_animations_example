@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 class ButtonSubmit extends StatelessWidget {
   final String label;
   final VoidCallback? onClick;
+  final bool isLoading;
 
-  ButtonSubmit({required this.label, required this.onClick});
+  ButtonSubmit(
+      {required this.label, required this.onClick, this.isLoading = false});
 
   @override
   Widget build(BuildContext context) {

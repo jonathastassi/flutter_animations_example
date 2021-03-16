@@ -1,7 +1,7 @@
 import 'package:corinthians_flutter_animations/pages/home_page.dart';
 import 'package:corinthians_flutter_animations/utils/validator.dart';
 import 'package:corinthians_flutter_animations/widgets/animated_opacity_custom.dart';
-import 'package:corinthians_flutter_animations/widgets/button_submit.dart';
+import 'package:corinthians_flutter_animations/widgets/button_animated_submit.dart';
 import 'package:corinthians_flutter_animations/widgets/input_form.dart';
 import 'package:corinthians_flutter_animations/widgets/page_scaffold.dart';
 import 'package:flutter/material.dart';
@@ -15,12 +15,22 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage>
+    with SingleTickerProviderStateMixin {
   double opacity = 0;
+  bool isLoading = false;
+
+  late AnimationController _animationController;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
+
+    _animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 4));
+
+    _animationController.forward();
 
     showWidgets();
   }
@@ -31,6 +41,23 @@ class _LoginPageState extends State<LoginPage> {
     setState(() {
       opacity = 1;
     });
+  }
+
+  void _pressEnter() async {
+    var state = _formKey.currentState;
+    if (state?.validate() == true) {
+      setState(() {
+        isLoading = true;
+      });
+
+      await Future.delayed(Duration(seconds: 2));
+
+      setState(() {
+        isLoading = false;
+      });
+
+      Navigator.of(context).pushReplacement(HomePage.route);
+    }
   }
 
   @override
@@ -100,6 +127,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: height * .02,
               ),
               Form(
+                key: _formKey,
                 child: Column(
                   children: [
                     InputForm(
@@ -117,11 +145,11 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: height * .04,
                     ),
-                    ButtonSubmit(
+                    ButtonAnimatedSubmit(
                       label: "Entrar",
-                      onClick: () {
-                        Navigator.of(context).pushReplacement(HomePage.route);
-                      },
+                      isLoading: isLoading,
+                      animationController: _animationController,
+                      onClick: _pressEnter,
                     ),
                   ],
                 ),

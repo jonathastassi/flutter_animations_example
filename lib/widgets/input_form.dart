@@ -30,6 +30,21 @@ class InputForm extends StatelessWidget {
             Radius.circular(15),
           ),
         ),
+        errorBorder: OutlineInputBorder(
+          borderSide:
+              BorderSide(color: Colors.redAccent, width: size.height * .002),
+          borderRadius: BorderRadius.all(
+            Radius.circular(15),
+          ),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide:
+              BorderSide(color: Colors.redAccent, width: size.height * .004),
+          borderRadius: BorderRadius.all(
+            Radius.circular(15),
+          ),
+        ),
+        errorStyle: TextStyle(color: Colors.redAccent),
         labelText: hint,
         labelStyle: TextStyle(color: Colors.white, fontSize: size.height * .026),
         contentPadding: EdgeInsets.symmetric(vertical: size.height * .02, horizontal: size.height * .02),

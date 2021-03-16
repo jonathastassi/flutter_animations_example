@@ -52,10 +52,6 @@ class _LoginPageState extends State<LoginPage>
 
       await Future.delayed(Duration(seconds: 2));
 
-      setState(() {
-        isLoading = false;
-      });
-
       Navigator.of(context).pushReplacement(HomePage.route);
     }
   }

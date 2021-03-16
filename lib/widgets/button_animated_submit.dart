@@ -36,7 +36,9 @@ class ButtonAnimatedSubmit extends StatelessWidget {
           ),
           onPressed: () => !isLoading ? this.onClick?.call() : null,          
           child: isLoading
-              ? LoadingCustom()
+              ? LoadingCustom(
+                  isDark: false,
+                )
               : Text(
                   this.label,
                   style: TextStyle(

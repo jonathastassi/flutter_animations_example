@@ -84,7 +84,9 @@ class _LoadingPageState extends State<LoadingPage>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    LoadingCustom(),
+                    LoadingCustom(
+                      isDark: true,
+                    ),
                   ],
                 ),
                 SizedBox(

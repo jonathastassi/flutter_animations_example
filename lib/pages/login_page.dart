@@ -1,16 +1,37 @@
 import 'package:corinthians_flutter_animations/pages/home_page.dart';
 import 'package:corinthians_flutter_animations/utils/validator.dart';
+import 'package:corinthians_flutter_animations/widgets/animated_opacity_custom.dart';
 import 'package:corinthians_flutter_animations/widgets/button_submit.dart';
 import 'package:corinthians_flutter_animations/widgets/input_form.dart';
 import 'package:corinthians_flutter_animations/widgets/page_scaffold.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   static get route => MaterialPageRoute(
         builder: (context) => LoginPage(),
       );
 
-  final _formKey = GlobalKey<FormState>();
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  double opacity = 0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    showWidgets();
+  }
+
+  void showWidgets() async {
+    await Future.delayed(Duration(milliseconds: 500));
+
+    setState(() {
+      opacity = 1;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,19 +51,22 @@ class LoginPage extends StatelessWidget {
                   width: height * .15),
             ),
             Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text("LOJA"),
-                  Text(
-                    "TODO PODEROSO",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24,
-                        letterSpacing: 2),
-                  ),
-                ],
+              child: AnimatedOpacityCustom(
+                opacity: opacity,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text("LOJA"),
+                    Text(
+                      "TODO PODEROSO",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                          letterSpacing: 2),
+                    ),
+                  ],
+                ),
               ),
             )
           ],
@@ -50,57 +74,60 @@ class LoginPage extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.only(left: 10, right: 10, top: height * .05),
-        child: Column(
-          children: [
-            Text(
-              "Acessar",
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
-                fontSize: height * .04,
+        child: AnimatedOpacityCustom(
+          opacity: opacity,
+          child: Column(
+            children: [
+              Text(
+                "Acessar",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                  fontSize: height * .04,
+                ),
               ),
-            ),
-            SizedBox(
-              height: height * .05,
-            ),
-            Text(
-              "Digite os seus dados de acesso.",
-              style: TextStyle(
-                fontSize: height * .025,
-                color: Colors.white,
+              SizedBox(
+                height: height * .05,
               ),
-            ),
-            SizedBox(
-              height: height * .02,
-            ),
-            Form(
-              child: Column(
-                children: [
-                  InputForm(
-                    hint: "Digite o e-mail",
-                    validator: Validator.isEmpty,
-                  ),
-                  SizedBox(
-                    height: height * .02,
-                  ),
-                  InputForm(
-                    hint: "Digite a senha",
-                    obscure: true,
-                    validator: Validator.isEmpty,
-                  ),
-                  SizedBox(
-                    height: height * .04,
-                  ),
-                  ButtonSubmit(
-                    label: "Entrar",
-                    onClick: () {
-                      Navigator.of(context).pushReplacement(HomePage.route);
-                    },
-                  ),
-                ],
+              Text(
+                "Digite os seus dados de acesso.",
+                style: TextStyle(
+                  fontSize: height * .025,
+                  color: Colors.white,
+                ),
               ),
-            ),
-          ],
+              SizedBox(
+                height: height * .02,
+              ),
+              Form(
+                child: Column(
+                  children: [
+                    InputForm(
+                      hint: "Digite o e-mail",
+                      validator: Validator.isEmpty,
+                    ),
+                    SizedBox(
+                      height: height * .02,
+                    ),
+                    InputForm(
+                      hint: "Digite a senha",
+                      obscure: true,
+                      validator: Validator.isEmpty,
+                    ),
+                    SizedBox(
+                      height: height * .04,
+                    ),
+                    ButtonSubmit(
+                      label: "Entrar",
+                      onClick: () {
+                        Navigator.of(context).pushReplacement(HomePage.route);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       percenteBody: .65,

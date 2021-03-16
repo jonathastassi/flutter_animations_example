@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:corinthians_flutter_animations/pages/login_page.dart';
+import 'package:corinthians_flutter_animations/widgets/animated_opacity_custom.dart';
 import 'package:corinthians_flutter_animations/widgets/page_scaffold.dart';
 import 'package:flutter/material.dart';
 
@@ -20,24 +21,24 @@ class _LoadingPageState extends State<LoadingPage>
     super.initState();
 
     _animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 2))
+        AnimationController(vsync: this, duration: Duration(seconds: 4))
           ..addStatusListener((status) {
             if (status == AnimationStatus.completed) {
-              // goToLogin();
+              goToLogin();
             }
           });
 
     logoAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Interval(0.0, 0.45),
+        curve: Interval(0.0, 0.25),
       ),
     );
 
     bodyAnimation = Tween<double>(begin: 0, end: 0.35).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Interval(0.45, 0.7),
+        curve: Interval(0.25, 0.35),
       ),
     );
 
@@ -45,8 +46,6 @@ class _LoadingPageState extends State<LoadingPage>
   }
 
   void goToLogin() async {
-    await Future.delayed(Duration(seconds: 5));
-
     Navigator.pushReplacement(context, LoginPage.route);
   }
 
@@ -78,11 +77,8 @@ class _LoadingPageState extends State<LoadingPage>
               ),
             ),
           ),
-          body: AnimatedOpacity(
+          body: AnimatedOpacityCustom(
             opacity: bodyAnimation.value == .35 ? 1 : 0,
-            duration: Duration(
-              milliseconds: 500,
-            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -103,7 +99,7 @@ class _LoadingPageState extends State<LoadingPage>
                 ),
               ],
             ),
-          ),
+          ),                  
         );
       },
     );

@@ -6,13 +6,11 @@ class ButtonAnimatedSubmit extends StatelessWidget {
   final String label;
   final VoidCallback? onClick;
   final HttpStatus statusLoading;
-  final AnimationController animationController;
 
   ButtonAnimatedSubmit(
       {required this.label,
       required this.onClick,
-      this.statusLoading = HttpStatus.none,
-      required this.animationController});
+      this.statusLoading = HttpStatus.none});
 
   double getHeight(Size size) {
     if (statusLoading == HttpStatus.finalized) {
@@ -39,49 +37,40 @@ class ButtonAnimatedSubmit extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     double height = size.height;
 
-    return AnimatedBuilder(
-      animation: animationController,
-      builder: (context, child) {
-        return Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: 20,
-          ),
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              primary: Colors.white,
-              minimumSize:
-                Size(
-                  statusLoading == HttpStatus.running
-                      ? height * .085
-                      : size.width,
-                  height * .085),
-              shape: statusLoading == HttpStatus.running
-                  ? CircleBorder()
-                  : RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(15),
-                      ),
-                    ),
-            ),
-            onPressed: () => statusLoading != HttpStatus.running
-                ? this.onClick?.call()
-                : null,
-            child: statusLoading == HttpStatus.running
-                ? LoadingCustom(
-                    isDark: false,
-                  )
-                : Text(
-                    this.label,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: height * .036,
-                      fontWeight: FontWeight.w300,
-                      letterSpacing: 0.3,
-                    ),
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: 20,
+      ),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: Colors.white,
+          minimumSize: Size(
+              statusLoading == HttpStatus.running ? height * .085 : size.width,
+              height * .085),
+          shape: statusLoading == HttpStatus.running
+              ? CircleBorder()
+              : RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(15),
                   ),
-          ),
-        );
-      },
+                ),
+        ),
+        onPressed: () =>
+            statusLoading != HttpStatus.running ? this.onClick?.call() : null,
+        child: statusLoading == HttpStatus.running
+            ? LoadingCustom(
+                isDark: false,
+              )
+            : Text(
+                this.label,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: height * .036,
+                  fontWeight: FontWeight.w300,
+                  letterSpacing: 0.3,
+                ),
+              ),
+      ),
     );
   }
 }

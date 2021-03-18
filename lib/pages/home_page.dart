@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
             IconButton(
                 icon: Icon(
                   Icons.menu_rounded,
-                  size: 40,
+                  size: height * .05,
                 ),
                 onPressed: () {
                   var state = this._scaffoldKey.currentState;
@@ -54,7 +54,14 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      body: Center(child: Text("Menu Inicial")),
+      body: Center(
+        child: Text(
+          "Menu Inicial",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
       percenteBody: 0.9,
     );
   }

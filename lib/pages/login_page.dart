@@ -5,12 +5,28 @@ import 'package:corinthians_flutter_animations/widgets/input_form.dart';
 import 'package:corinthians_flutter_animations/widgets/page_scaffold.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   static get route => MaterialPageRoute(
         builder: (context) => LoginPage(),
       );
 
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
+
+  void _pressEnter() async {
+    var state = _formKey.currentState;
+    if (state?.validate() == true) {
+      FocusScope.of(context).unfocus();
+
+      await Future.delayed(Duration(seconds: 2));
+
+      Navigator.of(context).pushReplacement(HomePage.route);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +87,7 @@ class LoginPage extends StatelessWidget {
               height: height * .02,
             ),
             Form(
+              key: _formKey,
               child: Column(
                 children: [
                   InputForm(
@@ -90,9 +107,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   ButtonSubmit(
                     label: "Entrar",
-                    onClick: () {
-                      Navigator.of(context).pushReplacement(HomePage.route);
-                    },
+                    onClick: _pressEnter,
                   ),
                 ],
               ),

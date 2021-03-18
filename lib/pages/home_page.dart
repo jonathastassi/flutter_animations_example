@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
     double height = size.height;
 
     return PageScaffold(
-      key: _scaffoldKey,
+      scaffoldKey: _scaffoldKey,
       endDrawer: DrawerMenu(),
       header: Padding(
         padding: EdgeInsets.all(10),
@@ -29,12 +29,15 @@ class HomePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text("OLÁ"),
+                Text(
+                  "OLÁ",
+                  style: TextStyle(fontSize: height * .015),
+                ),
                 Text(
                   "JONATHAS",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 24,
+                      fontSize: height * .032,
                       letterSpacing: 2),
                 ),
               ],

@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:corinthians_flutter_animations/pages/login_page.dart';
+import 'package:corinthians_flutter_animations/widgets/loading_custom.dart';
+import 'package:corinthians_flutter_animations/widgets/page_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class LoadingPage extends StatefulWidget {
@@ -31,55 +33,32 @@ class _LoadingPageState extends State<LoadingPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return Scaffold(
-      body: Stack(
-        alignment: Alignment.bottomCenter,
+    return PageScaffold(
+      percenteBody: .35,
+      header: Center(
+        child: Image.asset(
+          "assets/images/escudo-Corinthians.png",
+          width: (size.height * .35),
+          height: (size.height * .35),
+        ),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              LoadingCustom(
+                isDark: true,
               ),
-              color: Colors.black,
-            ),
-            height: size.height * .35,
+            ],
           ),
-          Container(
-            width: size.width,
-            height: size.height,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  height: size.height * .4,
-                  width: size.height * .4,
-                  child: Image.asset("assets/images/escudo-Corinthians.png"),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircularProgressIndicator(
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(Colors.white),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      "Aguarde...",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            "Aguarde...",
+            style: TextStyle(color: Colors.white, fontSize: 20),
           ),
         ],
       ),

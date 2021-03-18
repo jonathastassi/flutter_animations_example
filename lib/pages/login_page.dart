@@ -61,6 +61,12 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
     showWidgets();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    _onFinalizeAnimationController.dispose();
+  }
+
   void showWidgets() async {
     await Future.delayed(Duration(milliseconds: 500));
 

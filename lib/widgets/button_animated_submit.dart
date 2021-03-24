@@ -41,35 +41,36 @@ class ButtonAnimatedSubmit extends StatelessWidget {
       padding: EdgeInsets.symmetric(
         vertical: 20,
       ),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          primary: Colors.white,
-          minimumSize: Size(
-              statusLoading == HttpStatus.running ? height * .085 : size.width,
-              height * .085),
-          shape: statusLoading == HttpStatus.running
-              ? CircleBorder()
-              : RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(15),
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 200),
+        height: height * .085,
+        width: statusLoading == HttpStatus.running ? height * .085 : size.width,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: Colors.white,
+            padding: EdgeInsets.zero,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(statusLoading == HttpStatus.running ? 30 : 15),
+              ),
+            ),
+          ),
+          onPressed: () =>
+              statusLoading != HttpStatus.running ? this.onClick?.call() : null,
+          child: statusLoading == HttpStatus.running
+              ? LoadingCustom(
+                  isDark: false,
+                )
+              : Text(
+                  this.label,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: height * .036,
+                    fontWeight: FontWeight.w300,
+                    letterSpacing: 0.3,
                   ),
                 ),
         ),
-        onPressed: () =>
-            statusLoading != HttpStatus.running ? this.onClick?.call() : null,
-        child: statusLoading == HttpStatus.running
-            ? LoadingCustom(
-                isDark: false,
-              )
-            : Text(
-                this.label,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: height * .036,
-                  fontWeight: FontWeight.w300,
-                  letterSpacing: 0.3,
-                ),
-              ),
       ),
     );
   }
